@@ -4,7 +4,7 @@
 
 -- create database
 
-create database 'MyDatabase';
+create database MyDatabase;
 
 -- three tables within this database
 
