@@ -6,6 +6,7 @@
 
 create database MyDatabase;
 
+use MyDatabase;
 -- three tables within this database
 
 create table Scientists
