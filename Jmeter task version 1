@@ -1,10 +1,10 @@
 //It has the following structure:
-//Test Plan
-//Thread Group (loop count 4)
-//Loop Controller (loop count 3)
-//HTTP Request (google.com)
-//HTTP Request (yahoo.com)
-//View Results in Table
+  Test Plan
+    Thread Group (loop count 4)
+      Loop Controller (loop count 3)
+        HTTP Request (google.com)
+      HTTP Request (yahoo.com)
+    View Results in Table
 
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
