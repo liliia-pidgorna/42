@@ -1,12 +1,12 @@
---The following database contains information about scientists, years when they received the Noble Prize and field of
---their work
+-- The following database contains information about scientists, years when they received the Noble Prize and field of
+-- their work
 
 
---create database
+-- create database
 
 create database 'MyDatabase';
 
---three tables within this database
+-- three tables within this database
 
 create table Scientists
 ( id int primary key, name char(100), year_of_birth int, country char(100)); 
@@ -18,7 +18,7 @@ create table Prizes
 ( id int primary key, scientists_id int, science_id int, year_of_prize int, foreign key (scientists_id) references
 Scientists(id), foreign key (science_id) references Science(id));
 
---fill these tables
+-- fill these tables
 
 insert into Science values (1, "physics", "exact"), (2, "chemistry", "exact"), (3, "physiology", "exact"), (4, "literature",
 "humanities"), (5, "peace", "humanities");
@@ -43,50 +43,51 @@ insert into Scientists values (1, "Joseph Thomson", 1856, "United Kingdom"), (2,
 (25, 24, 5, 1906), (26, 25, 5, 1930), (27, 26, 5, 1964), (28, 27, 5, 1975), (29, 28, 5, 1979), (30, 29, 5, 1993),
 (31, 30, 5, 1994);
 
---Simple statements. Select from one table
+-- Simple statements. Select from one table
 -- Select all the columns from the "Science" table
 select * from Science;
 
---Select column "name" from the "Science" table
+-- Select column "name" from the "Science" table
 select name from Science;
 
---Select exact sciences
+-- Select exact sciences
 select name from Science where category = 'exact';
 
---Simple statements. Select from a few tables
---Select scientists and the year of their prizes
+-- Simple statements. Select from a few tables
+
+-- Select scientists and the year of their prizes
 
 select name, year_of_prize from Scientists
 join Prizes on Scientists.id = Prizes.scientists_id;
 
 select name, year_of_prize from Scientists, Prizes where Scientists.id = Prizes.scientists_id;
 
---Select scientists who received prizes after 1920
+-- Select scientists who received prizes after 1920
 select name from Scientists
 join Prizes on Scientists.id = Prizes.scientists_id
 where year_of_prize > 1920;
 
---Select scientists who received prizes on exact sciences after 1920
+-- Select scientists who received prizes on exact sciences after 1920
 select Scientists.name from Scientists
 join Prizes on Scientists.id = Prizes.scientists_id
 join Science on Science.id = Prizes.science_id
 where year_of_prize > 1920 
 and category = 'exact';
 
---Select scientists who received more than 1 prize
+-- Select scientists who received more than 1 prize
 select Scientists.name from Scientists
 join Prizes on Prizes.scientists_id = Scientists.id
 group by Prizes.scientists_id
 having count(*) > 1;
 
---Simple statements. Count rows for a table
---Count all sciences
+-- Simple statements. Count rows for a table
+-- Count all sciences
 select count(*) from Science;
 
---Count exact sciences
+-- Count exact sciences
 select count(category) from Science where category = 'exact';
 
---Count the amount of scientists who got their prizes before 1950
+-- Count the amount of scientists who got their prizes before 1950
 select count(Scientists.name) from Scientists
 join Prizes on Scientists.id = Prizes.scientists_id
 where year_of_prize < 1950;
